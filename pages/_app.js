@@ -10,7 +10,7 @@ const MyApp = ({ Component, pageProps }) => {
   return (
     <NextUIProvider>
       <NextThemesProvider
-        defaultTheme="system"
+        forcedTheme="dark"
         attribute="class"
       >
         <Component {...pageProps} />
