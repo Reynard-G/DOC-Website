@@ -1,5 +1,5 @@
 {
-  "name": "analytics-dashboard",
+  "name": "doc-analytics",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,14 +8,25 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "resolutions": {
+    "@react-aria/ssr": "^3.4.1"
+  },
   "dependencies": {
+    "@nextui-org/react": "^0.0.0-dev-v2-20230619185541",
     "autoprefixer": "10.4.14",
-    "eslint": "8.43.0",
-    "eslint-config-next": "13.4.6",
+    "chart.js": "^4.3.0",
+    "eslint-config-next": "^12.0.4",
+    "framer-motion": "^10.12.16",
+    "mariadb": "^3.2.0",
     "next": "13.4.6",
+    "next-themes": "^0.2.1",
     "postcss": "8.4.24",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "primeflex": "^3.3.1",
+    "primereact": "^9.5.0",
+    "react": "^18.2.0",
+    "react-icons": "^4.9.0",
+    "sass": "^1.63.4",
+    "swr": "^2.2.0",
     "tailwindcss": "3.3.2"
   }
 }

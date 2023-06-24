@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "primeflex/primeflex.css";
+@import "primereact/resources/themes/mdc-dark-indigo/theme.css";
+@import "primereact/resources/primereact.min.css";
+
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+.intro {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
