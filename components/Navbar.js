@@ -8,6 +8,10 @@ import { icons } from './Icons';
 const NavBar = () => {
   const { chartDropdownOpen, setChartDropdownOpen } = useContext(chartDropdownContext);
 
+  const toggleChartDropdown = () => {
+    setChartDropdownOpen(!chartDropdownOpen);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -40,6 +44,7 @@ const NavBar = () => {
           <Dropdown
             aria-label="Chart Menu"
             isOpen={chartDropdownOpen}
+            onOpenChange={toggleChartDropdown}
           >
             <NavbarItem>
               <DropdownTrigger>
