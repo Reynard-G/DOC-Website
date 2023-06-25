@@ -122,10 +122,6 @@ const Chart1 = () => {
     setChartOptions(options);
   }, [data, isLoading]);
 
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
-
   return (
       <Layout title="Inflation Tracker">
         <ChartContainer

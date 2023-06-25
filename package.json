@@ -12,7 +12,7 @@
     "@react-aria/ssr": "^3.4.1"
   },
   "dependencies": {
-    "@nextui-org/react": "^0.0.0-dev-v2-20230619185541",
+    "@nextui-org/react": "^0.0.0-dev-v2-20230624215649",
     "autoprefixer": "10.4.14",
     "chart.js": "^4.3.0",
     "eslint-config-next": "^12.0.4",
