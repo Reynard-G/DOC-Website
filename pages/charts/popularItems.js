@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import useSWR from 'swr';
 import { Decimal } from 'decimal.js-light';
-import ColorThief from 'colorthief';
 
 import { Dropdown, Button, DropdownTrigger, DropdownMenu, DropdownItem } from '@nextui-org/react';
 import Layout from 'components/Layout';
@@ -50,12 +49,14 @@ const PopularItemsChart = () => {
   const [allChartData, setAllChartData] = useState({});
   const [chartItemCount, setChartItemCount] = useState(10);
 
-  const apiUrl = `/api/popularItems?monthly=true&limit=50`;
-  const { data } = useSWR(apiUrl, fetcher);
+  const apiDataUrl = `/api/popularItems?monthly=true&limit=50`;
+  const { data: data } = useSWR(apiDataUrl, fetcher, { revalidateOnFocus: false });
+  const apiColorsUrl = `/api/itemColors`;
+  const { data: colors } = useSWR(apiColorsUrl, fetcher, { revalidateOnFocus: false });
 
   useEffect(() => {
     const fetchData = async () => {
-      if (data) {
+      if (data && colors) {
         if (!selectedMonth) {
           setSelectedMonth(data[0].month);
         }
@@ -63,7 +64,7 @@ const PopularItemsChart = () => {
         if (Object.keys(allChartData).length === 0) {
           const monthlyChartData = {};
 
-          for (const item of data) {
+          data.forEach(async (item) => {
             const { month, item_name, total_sell_quantity } = item;
 
             if (!monthlyChartData[month]) {
@@ -91,32 +92,14 @@ const PopularItemsChart = () => {
             );
             monthlyChartData[month].datasets[0].total_sell_quantity.push(total_sell_quantity);
 
-            const minecraftName = itemNameToMinecraftName(item_name);
-            const baseURL = '/items/';
-            const imageURL = `${baseURL}${minecraftName}.png`;
-
-            try {
-              const color = await new Promise((resolve, reject) => {
-                const img = new Image();
-                img.onload = () => {
-                  const colorThief = new ColorThief();
-                  const color = colorThief.getColor(img);
-                  resolve(color);
-                };
-                img.onerror = reject;
-                img.src = imageURL;
-              });
-
-              monthlyChartData[month].datasets[0].backgroundColor.push(
-                `rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.2)`
-              );
-              monthlyChartData[month].datasets[0].borderColor.push(
-                `rgba(${color[0]}, ${color[1]}, ${color[2]}, 1)`
-              );
-            } catch (err) {
-              console.error(err);
-            }
-          }
+            const color = colors.find((color) => color.item_name === itemNameToMinecraftName(item_name));
+            monthlyChartData[month].datasets[0].backgroundColor.push(
+              `rgba(${color.rgb}, 0.2)`
+            );
+            monthlyChartData[month].datasets[0].borderColor.push(
+              `rgba(${color.rgb}, 1)`
+            );
+          });
 
           setAllChartData(monthlyChartData);
         }
@@ -124,8 +107,9 @@ const PopularItemsChart = () => {
         if (allChartData[Object.keys(allChartData)[0]] && chartItemCount != chartData[Object.keys(chartData)[0]].length) {
           setChartData(limitData(allChartData[selectedMonth], chartItemCount));
           setChartOptions({
-            indexAxis: 'y',
             responsive: true,
+            maintainAspectRatio: false,
+            aspectRatio: 0.7,
             plugins: {
               legend: {
                 display: false
@@ -154,11 +138,12 @@ const PopularItemsChart = () => {
     };
 
     fetchData();
-  }, [data, selectedMonth, chartData, allChartData, chartItemCount, chartOptions]);
+  }, [data, selectedMonth, chartData, allChartData, chartItemCount, chartOptions, colors]);
 
   const handleMonthSelection = (month) => {
     setSelectedMonth(month);
     setChartData(allChartData[month]);
+
   };
 
   const handleItemCountSelection = (itemCount) => {
@@ -220,7 +205,7 @@ const PopularItemsChart = () => {
                 onSelectionChange={(itemCount) => handleItemCountSelection(itemCount.currentKey)}
               >
                 {[10, 20, 30, 40, 50].map((item) => (
-                  <DropdownItem key={item}>
+                  <DropdownItem key={item} textValue={item}>
                     {item}
                   </DropdownItem>
                 ))}

@@ -69,14 +69,14 @@ const NavBar = () => {
                 key="popular_items_chart"
                 onClick={() => window.location.href = "/charts/popularItems"}
                 description="Top 10 most popular items sold in DC"
-                startContent={icons.lineChart({ size: "2rem" })}
+                startContent={icons.pieChart({ size: "2rem" })}
               >
                 Item Demand
               </DropdownItem>
               <DropdownItem
                 key="chart3"
                 description="This is a description for the chart 3"
-                startContent={icons.pieChart({ size: "2rem" })}
+                startContent={icons.lineChart({ size: "2rem" })}
               >
                 Chart 3
               </DropdownItem>
