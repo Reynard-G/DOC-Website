@@ -1,6 +1,6 @@
 import "styles/hero.scss";
 import { icons } from './Icons';
-import chartDropdownContext from "pages/context";
+import { chartDropdownContext } from 'pages/_app';
 
 import Link from 'next/link';
 import Image from 'next/image';

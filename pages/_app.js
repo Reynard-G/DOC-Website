@@ -1,12 +1,15 @@
 import 'styles/globals.scss';
 
-import React from 'react';
+import React, { createContext } from 'react';
 import { NextUIProvider } from '@nextui-org/react';
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
 
-import ChartDropdownContext from 'pages/context';
-
 React.useLayoutEffect = React.useEffect;
+
+export const chartDropdownContext = createContext({
+  chartDropdownOpen: false,
+  setChartDropdownOpen: () => { },
+});
 
 const MyApp = ({ Component, pageProps }) => {
   const [chartDropdownOpen, setChartDropdownOpen] = React.useState(false);
@@ -18,9 +21,9 @@ const MyApp = ({ Component, pageProps }) => {
         forcedTheme="dark"
         attribute="class"
       >
-        <ChartDropdownContext.Provider value={chartDropdownState}>
+        <chartDropdownContext.Provider value={chartDropdownState}>
           <Component {...pageProps} />
-        </ChartDropdownContext.Provider>
+        </chartDropdownContext.Provider>
       </NextThemesProvider>
     </NextUIProvider>
   );

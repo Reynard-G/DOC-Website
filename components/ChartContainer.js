@@ -3,9 +3,9 @@ import { Chart } from 'primereact/chart';
 import { Card } from 'primereact/card';
 import { Divider, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from '@nextui-org/react';
 
-const ChartContainer = ({ type, data, options, chartTitle, chartSubtitle, chartDescription, children }) => {
+const ChartContainer = ({ type, data, options, chartTitle, chartSubtitle, chartDescription, dropdowns }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-
+  
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -15,13 +15,20 @@ const ChartContainer = ({ type, data, options, chartTitle, chartSubtitle, chartD
       <div className="chart-container flex justify-center py-4">
         <Card className="min-w-[60vw] dark:bg-black" title={chartTitle} subTitle={chartSubtitle}>
           <Chart type={type} data={data} options={options} />
-          <Divider className="my-4" />
+          {dropdowns &&
+            <div>
+              <Divider className="mt-4" />
+              {dropdowns}
+            </div>
+          }
+          <Divider />
           <Button
-            color="secondary"
+            color="default"
+            variant="flat"
             onPress={onOpen}
-            className="justify-center w-full"
+            className="justify-center w-full my-4"
           >
-            Description
+            <strong>Description</strong>
           </Button>
           <Modal
             size="4xl"
@@ -41,7 +48,6 @@ const ChartContainer = ({ type, data, options, chartTitle, chartSubtitle, chartD
               )}
             </ModalContent>
           </Modal>
-          {children}
         </Card>
       </div>
     </motion.div>

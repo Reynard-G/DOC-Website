@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import chartDropdownContext from 'pages/context';
+import { chartDropdownContext } from 'pages/_app';
 
 import { Image, Navbar, NavbarMenuToggle, NavbarBrand, NavbarContent, NavbarItem, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button, Link } from '@nextui-org/react';
 import { motion } from "framer-motion";
@@ -66,11 +66,12 @@ const NavBar = () => {
                 Inflation Tracker
               </DropdownItem>
               <DropdownItem
-                key="chart2"
-                description="This is a description for the chart 2"
+                key="popular_items_chart"
+                onClick={() => window.location.href = "/charts/popularItems"}
+                description="Top 10 most popular items sold in DC"
                 startContent={icons.lineChart({ size: "2rem" })}
               >
-                Chart 2
+                Item Demand
               </DropdownItem>
               <DropdownItem
                 key="chart3"
