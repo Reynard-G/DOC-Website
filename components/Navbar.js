@@ -1,7 +1,11 @@
 import { useContext } from 'react';
 import { chartDropdownContext } from 'pages/_app';
 
-import { Image, Navbar, NavbarMenuToggle, NavbarBrand, NavbarContent, NavbarItem, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button, Link } from '@nextui-org/react';
+import { Navbar, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, NavbarBrand, NavbarContent, NavbarItem } from '@nextui-org/navbar';
+import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from '@nextui-org/dropdown';
+import { Image } from '@nextui-org/image';
+import { Button } from '@nextui-org/button';
+import { Link } from '@nextui-org/link';
 import { motion } from "framer-motion";
 import { icons } from './Icons';
 
@@ -17,7 +21,7 @@ const NavBar = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 0.5, duration: 0.75 }}
-      className="flex align-items-center py-4"
+      className="flex align-center"
     >
       <Navbar
         shouldHideOnScroll
@@ -36,9 +40,9 @@ const NavBar = () => {
           <Image
             alt="milklegend"
             src="/milklegend.png"
-            className="flex-auto mr-2 opacity-100"
+            className="mr-2 opacity-100"
           />
-          <p className="font-bold sm:block text-inherit">DOC Analytics</p>
+          <p className="text-inherit font-bold">DOC Analytics</p>
         </NavbarBrand>
         <NavbarContent className="hidden gap-0 sm:flex">
           <Dropdown
@@ -82,23 +86,25 @@ const NavBar = () => {
               </DropdownItem>
             </DropdownMenu>
           </Dropdown>
-          <NavbarItem
-            as={Link}
-            className="px-4"
-            color="foreground"
-            href="https://tracker.milklegend.xyz/"
-          >
+          <NavbarItem as={Link} className="px-4" color="foreground" href="https://tracker.milklegend.xyz/">
             Item Price Tracker
           </NavbarItem>
-          <NavbarItem
-            as={Link}
-            className="px-4"
-            color="foreground"
-            href="https://maps.milklegend.xyz/"
-          >
+          <NavbarItem as={Link} className="px-4" color="foreground" href="https://maps.milklegend.xyz/">
             Maps
           </NavbarItem>
         </NavbarContent>
+        <NavbarMenu>
+          <NavbarMenuItem key="Item Price Tracker">
+            <Link color="foreground" className="w-full" href="https://tracker.milklegend.xyz/" size="lg">
+              Item Price Tracker
+            </Link>
+          </NavbarMenuItem>
+          <NavbarMenuItem key="Maps">
+            <Link color="foreground" className="w-full" href="https://maps.milklegend.xyz/" size="lg">
+              Maps
+            </Link>
+          </NavbarMenuItem>
+        </NavbarMenu>
       </Navbar>
     </motion.div>
   );
