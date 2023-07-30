@@ -9,7 +9,7 @@ export default async function handler(req, res) {
           year,
           total_basket_cost
         FROM inflation
-        ORDER BY YEAR(year), MONTH(month)
+        ORDER BY STR_TO_DATE(CONCAT(year, month), '%Y %M') ASC;
       `);
 
       res.status(200).json(rows);

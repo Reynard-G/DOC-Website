@@ -1,10 +1,20 @@
 import 'styles/globals.scss';
 
 import React, { createContext } from 'react';
-import { NextUIProvider } from '@nextui-org/react';
-import { ThemeProvider as NextThemesProvider } from 'next-themes';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 
-React.useLayoutEffect = React.useEffect;
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+  typography: {
+    fontFamily: [
+      'Space Grotesk',
+      'sans-serif',
+    ].join(','),
+  },
+});
 
 export const chartDropdownContext = createContext({
   chartDropdownOpen: false,
@@ -16,16 +26,12 @@ const MyApp = ({ Component, pageProps }) => {
   const chartDropdownState = { chartDropdownOpen, setChartDropdownOpen };
 
   return (
-    <NextUIProvider>
-      <NextThemesProvider
-        forcedTheme="dark"
-        attribute="class"
-      >
-        <chartDropdownContext.Provider value={chartDropdownState}>
-          <Component {...pageProps} />
-        </chartDropdownContext.Provider>
-      </NextThemesProvider>
-    </NextUIProvider>
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
+      <chartDropdownContext.Provider value={chartDropdownState}>
+        <Component {...pageProps} />
+      </chartDropdownContext.Provider>
+    </ThemeProvider>
   );
 };
 

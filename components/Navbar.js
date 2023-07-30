@@ -1,20 +1,45 @@
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import {
+  AppBar,
+  Toolbar,
+  Button,
+  Typography,
+  Menu,
+  MenuItem,
+  ListItemIcon,
+  ListItemText,
+  IconButton,
+} from '@mui/material';
+import { Menu as MenuIcon, KeyboardArrowDown } from '@mui/icons-material';
 import { chartDropdownContext } from 'pages/_app';
 
-import { Navbar, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, NavbarBrand, NavbarContent, NavbarItem } from '@nextui-org/navbar';
-import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from '@nextui-org/dropdown';
-import { Image } from '@nextui-org/image';
-import { Button } from '@nextui-org/button';
-import { Link } from '@nextui-org/link';
-import { motion } from "framer-motion";
-import { icons } from './Icons';
+import InsertChartRoundedIcon from '@mui/icons-material/InsertChartRounded';
+import PieChartRoundedIcon from '@mui/icons-material/PieChartRounded';
+import StackedLineChartRoundedIcon from '@mui/icons-material/StackedLineChartRounded';
 
 const NavBar = () => {
   const { chartDropdownOpen, setChartDropdownOpen } = useContext(chartDropdownContext);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const toggleChartDropdown = () => {
     setChartDropdownOpen(!chartDropdownOpen);
   };
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  const handleMenuClick = (event) => {
+    setAnchorEl(event.currentTarget);
+    toggleChartDropdown();
+  };
+
+  useEffect(() => {
+    setMobileMenuOpen(chartDropdownOpen);
+  }, [chartDropdownOpen]);
 
   return (
     <motion.div
@@ -23,89 +48,125 @@ const NavBar = () => {
       transition={{ delay: 0.5, duration: 0.75 }}
       className="flex align-center"
     >
-      <Navbar
-        shouldHideOnScroll
-        isBlurred
-        maxWidth="lg"
-        className="bg-transparent"
-      >
-        <NavbarMenuToggle
-          className="sm:hidden"
-        />
-        <NavbarBrand
-          as={Link}
-          href="/"
-          className="text-inherit"
-        >
-          <Image
-            alt="milklegend"
-            src="/milklegend.png"
-            className="mr-2 opacity-100"
-          />
-          <p className="text-inherit font-bold">DOC Analytics</p>
-        </NavbarBrand>
-        <NavbarContent className="hidden gap-0 sm:flex">
-          <Dropdown
-            aria-label="Chart Menu"
-            isOpen={chartDropdownOpen}
-            onOpenChange={toggleChartDropdown}
-          >
-            <NavbarItem>
-              <DropdownTrigger>
-                <Button className="text-base" endContent={icons.chevronDown({ size: "1rem" })} radius="full" variant="light">
-                  Charts
-                </Button>
-              </DropdownTrigger>
-            </NavbarItem>
-            <DropdownMenu
-              aria-label="Chart Menu"
-              className="w-[340px]"
+      <AppBar position="static" color="transparent" elevation={0}>
+        <Toolbar>
+          <Link href="/" className="flex items-center gap-2">
+            <img
+              className="rounded-xl"
+              src="/milklegend.png"
+              alt="MilkLegend"
+              width="40"
+              height="40"
+            />
+            <Typography variant="h6" className="font-bold">
+              DOC Analytics
+            </Typography>
+          </Link>
+          <div className="flex-grow" />
+          <div className="hidden gap-0 sm:flex">
+            <Button
+              endIcon={<KeyboardArrowDown />}
+              onClick={handleMenuClick}
+              color="inherit"
             >
-              <DropdownItem
-                key="inflation_chart"
-                onClick={() => window.location.href = "/charts/inflation"}
-                description="Historical inflation of DC since 2022"
-                startContent={icons.barChart({ size: "2rem" })}
-              >
-                Inflation Tracker
-              </DropdownItem>
-              <DropdownItem
-                key="popular_items_chart"
-                onClick={() => window.location.href = "/charts/popularItems"}
-                description="Top 10 most popular items sold in DC"
-                startContent={icons.pieChart({ size: "2rem" })}
-              >
-                Item Demand
-              </DropdownItem>
-              <DropdownItem
-                key="chart3"
-                description="This is a description for the chart 3"
-                startContent={icons.lineChart({ size: "2rem" })}
-              >
-                Chart 3
-              </DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
-          <NavbarItem as={Link} className="px-4" color="foreground" href="https://tracker.milklegend.xyz/">
-            Item Price Tracker
-          </NavbarItem>
-          <NavbarItem as={Link} className="px-4" color="foreground" href="https://maps.milklegend.xyz/">
-            Maps
-          </NavbarItem>
-        </NavbarContent>
-        <NavbarMenu>
-          <NavbarMenuItem key="Item Price Tracker">
-            <Link color="foreground" className="w-full" href="https://tracker.milklegend.xyz/" size="lg">
+              Charts
+            </Button>
+            <Menu
+              elevation={0}
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              keepMounted
+              open={chartDropdownOpen}
+              onClose={() => setChartDropdownOpen(false)}
+            >
+              <MenuItem onClick={() => (window.location.href = '/charts/inflation')} >
+                <InsertChartRoundedIcon fontSize='large' sx={{ mr: 1 }} />
+                <ListItemText
+                  primary="Inflation Tracker"
+                  secondary="Historical inflation of DC since 2022"
+                />
+              </MenuItem>
+              <MenuItem onClick={() => (window.location.href = '/charts/popularItems')}>
+                <PieChartRoundedIcon fontSize='large' sx={{ mr: 1 }} />
+                <ListItemText
+                  primary="Item Demand"
+                  secondary="Top 10 most popular items sold in DC"
+                />
+              </MenuItem>
+              <MenuItem>
+                <StackedLineChartRoundedIcon fontSize='large' sx={{ mr: 1 }} />
+                <ListItemText primary="Chart 3" secondary="This is a description for the chart 3" />
+              </MenuItem>
+            </Menu>
+            <Button className="px-4" color="inherit" href="https://tracker.milklegend.xyz/">
               Item Price Tracker
-            </Link>
-          </NavbarMenuItem>
-          <NavbarMenuItem key="Maps">
-            <Link color="foreground" className="w-full" href="https://maps.milklegend.xyz/" size="lg">
+            </Button>
+            <Button className="px-4" color="inherit" href="https://maps.milklegend.xyz/">
               Maps
-            </Link>
-          </NavbarMenuItem>
-        </NavbarMenu>
-      </Navbar>
+            </Button>
+          </div>
+          <div className="sm:hidden">
+            <IconButton onClick={toggleMobileMenu} color="inherit">
+              <MenuIcon />
+            </IconButton>
+          </div>
+        </Toolbar>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
+            className="flex flex-col gap-0 sm:hidden"
+          >
+            <Button
+              endIcon={<KeyboardArrowDown />}
+              onClick={handleMenuClick}
+              color="inherit"
+            >
+              Charts
+            </Button>
+            <Menu
+              elevation={0}
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              keepMounted
+              open={chartDropdownOpen}
+              onClose={() => setChartDropdownOpen(false)}
+            >
+              <MenuItem onClick={() => (window.location.href = '/charts/inflation')}>
+                <InsertChartRoundedIcon fontSize='large' sx={{ mr: 1 }} />
+                <ListItemText
+                  primary="Inflation Tracker"
+                  secondary="Historical inflation of DC since 2022"
+                />
+              </MenuItem>
+              <MenuItem onClick={() => (window.location.href = '/charts/popularItems')}>
+                <PieChartRoundedIcon fontSize='large' sx={{ mr: 1 }} />
+                <ListItemText
+                  primary="Item Demand"
+                  secondary="Top 10 most popular items sold in DC"
+                />
+              </MenuItem>
+              <MenuItem>
+                <StackedLineChartRoundedIcon fontSize='large' sx={{ mr: 1 }} />
+                <ListItemText primary="Chart 3" secondary="This is a description for the chart 3" />
+              </MenuItem>
+            </Menu>
+            <Button className="px-4" color="inherit" href="https://tracker.milklegend.xyz/">
+              Item Price Tracker
+            </Button>
+            <Button className="px-4" color="inherit" href="https://maps.milklegend.xyz/">
+              Maps
+            </Button>
+          </motion.div>
+        )}
+      </AppBar>
     </motion.div>
   );
 };

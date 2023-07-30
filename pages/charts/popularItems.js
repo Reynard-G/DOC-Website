@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react';
 import useSWR from 'swr';
 import { Decimal } from 'decimal.js-light';
-
-import { Dropdown, Button, DropdownTrigger, DropdownMenu, DropdownItem } from '@nextui-org/react';
+import {
+  Button,
+  Menu,
+  MenuItem,
+  Typography,
+} from '@mui/material';
 import Layout from 'components/Layout';
 import ChartContainer from 'components/ChartContainer';
 
@@ -48,6 +52,8 @@ const PopularItemsChart = () => {
   const [chartOptions, setChartOptions] = useState({});
   const [allChartData, setAllChartData] = useState({});
   const [chartItemCount, setChartItemCount] = useState(10);
+  const [monthsMenuAnchor, setMonthsMenuAnchor] = useState(null);
+  const [itemsMenuAnchor, setItemsMenuAnchor] = useState(null);
 
   const apiDataUrl = `/api/popularItems?monthly=true&limit=50`;
   const { data: data } = useSWR(apiDataUrl, fetcher, { revalidateOnFocus: false });
@@ -140,14 +146,28 @@ const PopularItemsChart = () => {
     fetchData();
   }, [data, selectedMonth, chartData, allChartData, chartItemCount, chartOptions, colors]);
 
-  const handleMonthSelection = (month) => {
-    setSelectedMonth(month);
-    setChartData(allChartData[month]);
-
+  const openMonthsMenu = (event) => {
+    setMonthsMenuAnchor(event.currentTarget);
   };
 
-  const handleItemCountSelection = (itemCount) => {
+  const openItemsMenu = (event) => {
+    setItemsMenuAnchor(event.currentTarget);
+  };
+
+  const closeMenu = () => {
+    setMonthsMenuAnchor(null);
+    setItemsMenuAnchor(null);
+  };
+
+  const handleMonthSelection = (event, month) => {
+    setSelectedMonth(month);
+    setChartData(allChartData[month]);
+    closeMenu();
+  };
+
+  const handleItemCountSelection = (event, itemCount) => {
     setChartItemCount(itemCount);
+    closeMenu();
   };
 
   return (
@@ -165,56 +185,46 @@ const PopularItemsChart = () => {
         `}
         dropdowns={
           <>
-            <Dropdown>
-              <DropdownTrigger>
-                <Button variant="flat" className="justify-center w-full my-4">
-                  <p className="text-center">
-                    <strong>Selected Month:</strong> {selectedMonth}
-                  </p>
-                </Button>
-              </DropdownTrigger>
-              <DropdownMenu
-                aria-label="Months"
-                variant="flat"
-                disallowEmptySelection
-                selectionMode="single"
-                selectedKeys={[selectedMonth]}
-                onSelectionChange={(month) => handleMonthSelection(month.currentKey)}
-              >
-                {Object.keys(allChartData).map((month) => (
-                  <DropdownItem key={month}>
-                    {month}
-                  </DropdownItem>
-                ))}
-              </DropdownMenu>
-            </Dropdown>
-            <Dropdown>
-              <DropdownTrigger>
-                <Button variant="flat" className="justify-center w-full mb-4">
-                  <p className="text-center">
-                    <strong># of Items:</strong> {chartItemCount}
-                  </p>
-                </Button>
-              </DropdownTrigger>
-              <DropdownMenu
-                aria-label="Items Count"
-                variant="flat"
-                disallowEmptySelection
-                selectionMode="single"
-                selectedKeys={[chartItemCount]}
-                onSelectionChange={(itemCount) => handleItemCountSelection(itemCount.currentKey)}
-              >
-                {[10, 20, 30, 40, 50].map((item) => (
-                  <DropdownItem key={item} textValue={item}>
-                    {item}
-                  </DropdownItem>
-                ))}
-              </DropdownMenu>
-            </Dropdown>
+            <Button variant="text" onClick={openMonthsMenu} className="justify-center w-full my-4">
+              <Typography variant="body1">
+                <strong>Selected Month:</strong> {selectedMonth}
+              </Typography>
+            </Button>
+            <Menu
+              anchorEl={monthsMenuAnchor}
+              open={Boolean(monthsMenuAnchor)}
+              onClose={closeMenu}
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+              transformOrigin={{ vertical: 'top', horizontal: 'center' }}
+            >
+              {Object.keys(allChartData).map((month) => (
+                <MenuItem key={month} onClick={(event) => handleMonthSelection(event, month)}>
+                  {month}
+                </MenuItem>
+              ))}
+            </Menu>
+
+            <Button variant="text" onClick={openItemsMenu} className="justify-center w-full mb-4">
+              <Typography variant="body1">
+                <strong># of Items:</strong> {chartItemCount}
+              </Typography>
+            </Button>
+            <Menu
+              anchorEl={itemsMenuAnchor}
+              open={Boolean(itemsMenuAnchor)}
+              onClose={closeMenu}
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+              transformOrigin={{ vertical: 'top', horizontal: 'center' }}
+            >
+              {[10, 20, 30, 40, 50].map((item) => (
+                <MenuItem key={item} onClick={(event) => handleItemCountSelection(event, item)}>
+                  {item}
+                </MenuItem>
+              ))}
+            </Menu>
           </>
         }
-      >
-      </ChartContainer>
+      />
     </Layout>
   );
 };

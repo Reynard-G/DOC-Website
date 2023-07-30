@@ -1,10 +1,16 @@
 import "styles/hero.scss";
-import { icons } from './Icons';
 import { chartDropdownContext } from 'pages/_app';
 
 import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useState, useContext } from 'react';
+
+import SignalCellularAltRoundedIcon from '@mui/icons-material/SignalCellularAltRounded';
+import ExploreRoundedIcon from '@mui/icons-material/ExploreRounded';
+import DescriptionRoundedIcon from '@mui/icons-material/DescriptionRounded';
+import AssignmentTurnedInRoundedIcon from '@mui/icons-material/AssignmentTurnedInRounded';
+import AttachMoneyRoundedIcon from '@mui/icons-material/AttachMoneyRounded';
+import HelpRoundedIcon from '@mui/icons-material/HelpRounded';
 
 const HeroSection = () => {
   const [animationClass, setAnimationClass] = useState('');
@@ -26,7 +32,7 @@ const HeroSection = () => {
             <div className="hero-box w-10rem h-10rem md:w-12rem md:h-12rem animation flex align-items-center justify-content-center" onClick={toggleChartDropdown}>
               <div className="flex flex-column align-items-center">
                 <div className="hero-svg">
-                  {icons.lineChart({ size: 48, color: "#7232f2" })}
+                  <SignalCellularAltRoundedIcon fontSize="large" sx={{ color: "#7232f2" }} />
                 </div>
                 <div className="name">
                   <b>Charts</b>
@@ -37,7 +43,7 @@ const HeroSection = () => {
             <div className="hero-box w-10rem h-10rem md:w-12rem md:h-12rem animation ml-4 md:ml-0 md:mt-4 flex align-items-center justify-content-center" onClick={() => (window.location.href = 'https://maps.milklegend.xyz')}>
               <div className="flex flex-column align-items-center">
                 <div className="hero-svg">
-                  {icons.map({ size: 48, color: "#7232f2" })}
+                  <ExploreRoundedIcon fontSize="large" sx={{ color: "#7232f2" }} />
                 </div>
                 <div className="name">
                   <b>Maps</b>
@@ -50,7 +56,7 @@ const HeroSection = () => {
             <div className="hero-box w-10rem h-10rem md:w-12rem md:h-12rem animation flex align-items-center justify-content-center" onClick={() => (window.location.href = 'https://www.democracycraft.net/forums/information-policy.44/')}>
               <div className="flex flex-column align-items-center">
                 <div className="hero-svg">
-                  {icons.openBook({ size: 48, color: "#7232f2" })}
+                  <DescriptionRoundedIcon fontSize="large" sx={{ color: "#7232f2" }} />
                 </div>
                 <div className="name">
                   <b>Documentation</b>
@@ -69,7 +75,7 @@ const HeroSection = () => {
             <div className="hero-box w-10rem h-10rem md:w-12rem md:h-12rem animation flex ml-4 md:ml-0 align-items-center justify-content-center" onClick={() => (window.location.href = 'https://www.democracycraft.net/forums/applications.24/')}>
               <div className="flex flex-column align-items-center">
                 <div className="hero-svg">
-                  {icons.checkList({ size: 48, color: "#7232f2" })}
+                  <AssignmentTurnedInRoundedIcon fontSize="large" sx={{ color: "#7232f2" }} />
                 </div>
                 <div className="name">
                   <b>Apply</b>
@@ -82,7 +88,7 @@ const HeroSection = () => {
             <div className="hero-box w-10rem h-10rem md:w-12rem md:h-12rem animation flex align-items-center justify-content-center" onClick={() => (window.location.href = 'https://tracker.milklegend.xyz')}>
               <div className="flex flex-column align-items-center">
                 <div className="hero-svg">
-                  {icons.moneyBill({ size: 48, color: "#7232f2" })}
+                  <AttachMoneyRoundedIcon fontSize="large" sx={{ color: "#7232f2" }} />
                 </div>
                 <div className="name">
                   <b>Price Tracker</b>
@@ -94,7 +100,7 @@ const HeroSection = () => {
               <div className="hero-box w-10rem h-10rem md:w-12rem md:h-12rem animation flex ml-4 md:ml-0 md:mt-4 align-items-center justify-content-center">
                 <div className="flex flex-column align-items-center">
                   <div className="hero-svg">
-                    {icons.questionMark({ size: 48, color: "#7232f2" })}
+                    <HelpRoundedIcon fontSize="large" sx={{ color: "#7232f2" }} />
                   </div>
                   <div className="name">
                     <b>Coming Soon</b>
