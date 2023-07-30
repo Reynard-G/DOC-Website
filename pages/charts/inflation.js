@@ -75,7 +75,7 @@ const InflationChart = ({ chartData, chartOptions }) => {
 };
 
 export async function getServerSideProps() {
-  const response = await fetch('http://localhost:3000/api/inflation');
+  const response = await fetch('https://doc.milklegend.xyz/api/inflation');
   const data = await response.json();
 
   // Extracting the necessary information from the data
