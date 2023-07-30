@@ -1,4 +1,3 @@
-import { Typography } from '@mui/material';
 import Layout from 'components/Layout';
 import ChartContainer from 'components/ChartContainer';
 
