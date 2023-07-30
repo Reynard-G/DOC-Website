@@ -1,5 +1,3 @@
-import { parse } from "postcss";
-
 const pool = require("./db");
 
 export default async function handler(req, res) {

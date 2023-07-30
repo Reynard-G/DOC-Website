@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   AppBar,
   Toolbar,
@@ -8,7 +9,6 @@ import {
   Typography,
   Menu,
   MenuItem,
-  ListItemIcon,
   ListItemText,
   IconButton,
 } from '@mui/material';
@@ -51,12 +51,12 @@ const NavBar = () => {
       <AppBar position="static" color="transparent" elevation={0}>
         <Toolbar>
           <Link href="/" className="flex items-center gap-2">
-            <img
-              className="rounded-xl"
+            <Image
               src="/milklegend.png"
-              alt="MilkLegend"
-              width="40"
-              height="40"
+              alt="MilkLegend Logo"
+              width={40}
+              height={40}
+              className="rounded-xl"
             />
             <Typography variant="h6" className="font-bold">
               DOC Analytics
