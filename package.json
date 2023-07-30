@@ -16,6 +16,8 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.1",
     "@mui/material": "^5.14.2",
+    "@next/font": "^13.4.12",
+    "@vercel/analytics": "^1.0.1",
     "autoprefixer": "10.4.14",
     "chart.js": "^4.3.0",
     "decimal.js-light": "^2.5.1",

@@ -3,6 +3,11 @@ import 'styles/globals.scss';
 import React, { createContext } from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import { Analytics } from '@vercel/analytics/react';
+
+import { Space_Grotesk } from '@next/font/google';
+
+const spaceGrotesk = Space_Grotesk({ subsets: ['latin'] });
 
 const darkTheme = createTheme({
   palette: {
@@ -10,7 +15,7 @@ const darkTheme = createTheme({
   },
   typography: {
     fontFamily: [
-      'Space Grotesk',
+      spaceGrotesk.style.fontFamily,
       'sans-serif',
     ].join(','),
   },
@@ -29,7 +34,10 @@ const MyApp = ({ Component, pageProps }) => {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <chartDropdownContext.Provider value={chartDropdownState}>
-        <Component {...pageProps} />
+        <main className={spaceGrotesk.className}>
+          <Component {...pageProps} />
+          <Analytics />
+        </main>
       </chartDropdownContext.Provider>
     </ThemeProvider>
   );
