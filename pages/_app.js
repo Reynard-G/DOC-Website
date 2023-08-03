@@ -3,7 +3,6 @@ import 'styles/globals.scss';
 import React, { createContext } from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { Analytics } from '@vercel/analytics/react';
 
 import { Space_Grotesk } from 'next/font/google';
 
@@ -36,7 +35,6 @@ const MyApp = ({ Component, pageProps }) => {
       <chartDropdownContext.Provider value={chartDropdownState}>
         <main className={spaceGrotesk.className}>
           <Component {...pageProps} />
-          <Analytics />
         </main>
       </chartDropdownContext.Provider>
     </ThemeProvider>
