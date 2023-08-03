@@ -45,6 +45,7 @@ export default function PopularItemsChart({ data, colors }) {
   const [itemsMenuAnchor, setItemsMenuAnchor] = useState(null);
 
   useEffect(() => {
+    // Set default month to the latest month
     setSelectedMonth(data[0].month);
 
     const monthlyChartData = {};
@@ -83,7 +84,7 @@ export default function PopularItemsChart({ data, colors }) {
     }
 
     setAllChartData(monthlyChartData);
-  }, []);
+  }, [data, colors]);
 
   useEffect(() => {
     if (!allChartData[selectedMonth]) return;
