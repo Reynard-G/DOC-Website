@@ -1,11 +1,7 @@
 @tailwind base;
-@tailwind components;
 @tailwind utilities;
 @import "primeflex/primeflex.css";
-@import "primereact/resources/themes/mdc-dark-indigo/theme.css";
 @import "primereact/resources/primereact.min.css";
-
-//@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap');
 
 html, body {
 	width: 100%;
