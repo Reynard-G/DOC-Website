@@ -213,7 +213,7 @@ export async function getStaticProps() {
           SUM(sell_item_quantity) AS total_sell_quantity,
           DATE_FORMAT(created_at, '%Y-%m') AS month,
           ROW_NUMBER() OVER (PARTITION BY DATE_FORMAT(created_at, '%Y-%m') ORDER BY SUM(sell_item_quantity) DESC) AS row_num
-        FROM historical_prices
+        FROM chestshops
         WHERE DATE_FORMAT(created_at, '%Y-%m') <= DATE_FORMAT(NOW(), '%Y-%m')
         GROUP BY item_name, month
       ) AS subquery
