@@ -109,7 +109,7 @@ const NavBar = () => {
             </Button>
           </div>
           <div className="sm:hidden">
-            <IconButton onClick={toggleMobileMenu} color="inherit">
+            <IconButton aria-label="Navbar Button" onClick={toggleMobileMenu} color="inherit">
               <MenuIcon />
             </IconButton>
           </div>

@@ -66,7 +66,7 @@ const HeroSection = () => {
             </div>
             <div className="hero-box w-10rem h-10rem md:w-12rem md:h-12rem animation logo hidden md:flex my-4 align-items-center justify-content-center">
               <div className="hero-box-inner text-center">
-                <Image src="https://imgs.milklegend.xyz/dept_commerce.png" alt="primereact main" width={96} height={96} />
+                <Image src="/dept_commerce.png" alt="primereact main" width={96} height={96} />
                 <div className="name">
                   <b className="font-bold">DOC Analytics</b>
                 </div>
