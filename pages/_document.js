@@ -31,7 +31,7 @@ export default class MyDocument extends Document {
             creation through promoting trade, technology advancement, and data-driven policies." />
           <meta property="twitter:image" content="https://imgs.milklegend.xyz/dept_commerce.png" />
           <meta property="twitter:image:alt" content="The Department of Commerce" />
-          <meta property="description"
+          <meta name="description"
             content="The Department of Commerce fosters economic growth, innovation, and job
             creation through promoting trade, technology advancement, and data-driven policies." />
         </Head>
