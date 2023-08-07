@@ -14,6 +14,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
+          <meta charSet="utf-8" />
           <meta property="og:title" content="The Department of Commerce" />
           <meta property="og:description"
             content="The Department of Commerce fosters economic growth, innovation, and job
@@ -23,7 +24,7 @@ export default class MyDocument extends Document {
           <meta property="og:type" content="website" />
           <meta property="og:site_name" content="The Department of Commerce" />
           <meta property="og:locale" content="en_US" />
-          <meta property="twitter:card" content="summary_large_image" />
+          <meta property="twitter:card" content="summary" />
           <meta property="twitter:title" content="The Department of Commerce" />
           <meta property="twitter:description"
             content="The Department of Commerce fosters economic growth, innovation, and job
