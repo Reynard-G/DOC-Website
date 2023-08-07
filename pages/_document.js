@@ -19,7 +19,7 @@ export default class MyDocument extends Document {
           <meta property="og:description"
             content="The Department of Commerce fosters economic growth, innovation, and job
             creation through promoting trade, technology advancement, and data-driven policies." />
-          <meta property="og:image" content="https://imgs.milklegend.xyz/dept_commerce-128x128.png" />
+          <meta property="og:image" content="/dept_commerce.png" />
           <meta property="og:url" content="https://doc.milklegend.xyz" />
           <meta property="og:type" content="website" />
           <meta property="og:site_name" content="The Department of Commerce" />
