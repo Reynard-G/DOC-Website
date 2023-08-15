@@ -8,32 +8,7 @@ import Typography from '@mui/material/Typography';
 import Layout from 'components/Layout';
 import ChartContainer from 'components/ChartContainer';
 
-const calculateMonthTotalSellQuantity = (monthlyData, month) => {
-  return monthlyData
-    .filter((item) => item.month === month)
-    .reduce((sum, item) => sum + parseInt(item.total_sell_quantity), 0);
-};
-
-const itemNameToMinecraftName = (itemName) => {
-  let item = itemName.split('#')[0];
-  item = item.split(':')[0];
-  item = item.replace(/([A-Z])/g, (match, letter, index) => (index !== 0 ? '_' + letter : letter)).toLowerCase();
-  item = item.replace(/(\D*)(\d+)/, '$1_$2');
-  return item;
-};
-
-const limitData = (data, limit) => {
-  return {
-    labels: data.labels.slice(0, limit),
-    datasets: data.datasets.map((dataset) => ({
-      ...dataset,
-      data: dataset.data.slice(0, limit),
-      total_sell_quantity: dataset.total_sell_quantity.slice(0, limit),
-      backgroundColor: dataset.backgroundColor.slice(0, limit),
-      borderColor: dataset.borderColor.slice(0, limit),
-    })),
-  };
-};
+import { calculateMonthTotalSellQuantity, itemNameToMinecraftName, limitData } from '@/utils/utils';
 
 export default function PopularItemsChart({ data, colors }) {
   const [selectedMonth, setSelectedMonth] = useState('');

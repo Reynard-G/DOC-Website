@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -13,14 +13,13 @@ import {
   IconButton,
 } from '@mui/material';
 import { Menu as MenuIcon, KeyboardArrowDown } from '@mui/icons-material';
-import { chartDropdownContext } from 'pages/_app';
 
 import InsertChartRoundedIcon from '@mui/icons-material/InsertChartRounded';
 import PieChartRoundedIcon from '@mui/icons-material/PieChartRounded';
 import StackedLineChartRoundedIcon from '@mui/icons-material/StackedLineChartRounded';
 
 const NavBar = () => {
-  const { chartDropdownOpen, setChartDropdownOpen } = useContext(chartDropdownContext);
+  const [chartDropdownOpen, setChartDropdownOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
 

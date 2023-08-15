@@ -1,6 +1,6 @@
 import 'styles/globals.scss';
 
-import React, { createContext } from 'react';
+import React from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
@@ -20,23 +20,13 @@ const darkTheme = createTheme({
   },
 });
 
-export const chartDropdownContext = createContext({
-  chartDropdownOpen: false,
-  setChartDropdownOpen: () => { },
-});
-
 const MyApp = ({ Component, pageProps }) => {
-  const [chartDropdownOpen, setChartDropdownOpen] = React.useState(false);
-  const chartDropdownState = { chartDropdownOpen, setChartDropdownOpen };
-
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-      <chartDropdownContext.Provider value={chartDropdownState}>
         <main className={spaceGrotesk.className}>
           <Component {...pageProps} />
         </main>
-      </chartDropdownContext.Provider>
     </ThemeProvider>
   );
 };

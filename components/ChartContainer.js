@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Chart } from 'primereact/chart';
 import {
@@ -16,7 +16,7 @@ import {
 } from '@mui/material';
 
 const ChartContainer = ({ type, data, options, chartTitle, chartSubtitle, chartDescription, dropdowns }) => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down('sm'));
 
   const handleClickOpen = () => {

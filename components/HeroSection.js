@@ -1,9 +1,8 @@
 import "styles/hero.scss";
-import { chartDropdownContext } from 'pages/_app';
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
 
 import SignalCellularAltRoundedIcon from '@mui/icons-material/SignalCellularAltRounded';
 import ExploreRoundedIcon from '@mui/icons-material/ExploreRounded';
@@ -14,22 +13,17 @@ import HelpRoundedIcon from '@mui/icons-material/HelpRounded';
 
 const HeroSection = () => {
   const [animationClass, setAnimationClass] = useState('');
-  const { chartDropdownOpen, setChartDropdownOpen } = useContext(chartDropdownContext);
 
   useEffect(() => {
     setAnimationClass('hero-animation');
   }, []);
-
-  const toggleChartDropdown = () => {
-    setChartDropdownOpen(!chartDropdownOpen);
-  };
 
   return (
     <section className={`landing-hero ${animationClass} flex align-items-center flex-column justify-content-center relative`}>
       <div className="hero-inner z-2 relative">
         <div className="flex flex-column md:align-items-center md:flex-row">
           <div className="p-2 flex flex-row md:flex-column">
-            <div className="hero-box w-10rem h-10rem md:w-12rem md:h-12rem animation flex align-items-center justify-content-center" onClick={toggleChartDropdown}>
+            <div className="hero-box w-10rem h-10rem md:w-12rem md:h-12rem animation flex align-items-center justify-content-center">
               <div className="flex flex-column align-items-center">
                 <div className="hero-svg">
                   <SignalCellularAltRoundedIcon fontSize="large" sx={{ color: "#7232f2" }} />
