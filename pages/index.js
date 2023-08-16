@@ -6,7 +6,7 @@ import HeroSection from 'components/HeroSection';
 export default function Home() {
   return (
     <>
-      <Layout title="DOC Analytics">
+      <Layout title="Department of Commerce">
         <HeroSection />
       </Layout>
     </>

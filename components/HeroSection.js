@@ -26,7 +26,7 @@ const HeroSection = () => {
             <div className="hero-box w-10rem h-10rem md:w-12rem md:h-12rem animation flex align-items-center justify-content-center">
               <div className="flex flex-column align-items-center">
                 <div className="hero-svg">
-                  <SignalCellularAltRoundedIcon fontSize="large" sx={{ color: "#7232f2" }} />
+                  <SignalCellularAltRoundedIcon fontSize="large" sx={{ color: "#32aff2" }} />
                 </div>
                 <div className="name">
                   <b>Charts</b>
@@ -37,11 +37,11 @@ const HeroSection = () => {
             <div className="hero-box w-10rem h-10rem md:w-12rem md:h-12rem animation ml-4 md:ml-0 md:mt-4 flex align-items-center justify-content-center" onClick={() => (window.location.href = 'https://maps.milklegend.xyz')}>
               <div className="flex flex-column align-items-center">
                 <div className="hero-svg">
-                  <ExploreRoundedIcon fontSize="large" sx={{ color: "#7232f2" }} />
+                  <ExploreRoundedIcon fontSize="large" sx={{ color: "#32aff2" }} />
                 </div>
                 <div className="name">
                   <b>Maps</b>
-                  <span>Visualize DC</span>
+                  <span>Visualize Redmont</span>
                 </div>
               </div>
             </div>
@@ -50,7 +50,7 @@ const HeroSection = () => {
             <div className="hero-box w-10rem h-10rem md:w-12rem md:h-12rem animation flex align-items-center justify-content-center" onClick={() => (window.location.href = 'https://www.democracycraft.net/forums/information-policy.44/')}>
               <div className="flex flex-column align-items-center">
                 <div className="hero-svg">
-                  <DescriptionRoundedIcon fontSize="large" sx={{ color: "#7232f2" }} />
+                  <DescriptionRoundedIcon fontSize="large" sx={{ color: "#32aff2" }} />
                 </div>
                 <div className="name">
                   <b>Documentation</b>
@@ -62,14 +62,14 @@ const HeroSection = () => {
               <div className="hero-box-inner text-center">
                 <Image src="/dept_commerce.png" alt="primereact main" width={96} height={96} />
                 <div className="name">
-                  <b className="font-bold">DOC Analytics</b>
+                  <b className="font-bold">Department of Commerce</b>
                 </div>
               </div>
             </div>
             <div className="hero-box w-10rem h-10rem md:w-12rem md:h-12rem animation flex ml-4 md:ml-0 align-items-center justify-content-center" onClick={() => (window.location.href = 'https://www.democracycraft.net/forums/applications.24/')}>
               <div className="flex flex-column align-items-center">
                 <div className="hero-svg">
-                  <AssignmentTurnedInRoundedIcon fontSize="large" sx={{ color: "#7232f2" }} />
+                  <AssignmentTurnedInRoundedIcon fontSize="large" sx={{ color: "#32aff2" }} />
                 </div>
                 <div className="name">
                   <b>Apply</b>
@@ -82,7 +82,7 @@ const HeroSection = () => {
             <div className="hero-box w-10rem h-10rem md:w-12rem md:h-12rem animation flex align-items-center justify-content-center" onClick={() => (window.location.href = 'https://tracker.milklegend.xyz')}>
               <div className="flex flex-column align-items-center">
                 <div className="hero-svg">
-                  <AttachMoneyRoundedIcon fontSize="large" sx={{ color: "#7232f2" }} />
+                  <AttachMoneyRoundedIcon fontSize="large" sx={{ color: "#32aff2" }} />
                 </div>
                 <div className="name">
                   <b>Price Tracker</b>
@@ -94,7 +94,7 @@ const HeroSection = () => {
               <div className="hero-box w-10rem h-10rem md:w-12rem md:h-12rem animation flex ml-4 md:ml-0 md:mt-4 align-items-center justify-content-center">
                 <div className="flex flex-column align-items-center">
                   <div className="hero-svg">
-                    <HelpRoundedIcon fontSize="large" sx={{ color: "#7232f2" }} />
+                    <HelpRoundedIcon fontSize="large" sx={{ color: "#32aff2" }} />
                   </div>
                   <div className="name">
                     <b>Coming Soon</b>

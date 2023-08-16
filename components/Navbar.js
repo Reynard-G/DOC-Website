@@ -51,14 +51,13 @@ const NavBar = () => {
         <Toolbar>
           <Link href="/" className="flex items-center gap-2">
             <Image
-              src="/milklegend.png"
-              alt="MilkLegend Logo"
+              src="/dept_commerce.png"
+              alt="Department of Commerce Logo"
               width={40}
               height={40}
-              className="rounded-xl"
             />
             <Typography variant="h6" className="font-bold">
-              DOC Analytics
+              Department of Commerce
             </Typography>
           </Link>
           <div className="flex-grow" />
