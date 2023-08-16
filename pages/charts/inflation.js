@@ -4,37 +4,31 @@ import ChartContainer from 'components/ChartContainer';
 
 export default function InflationChart({ data }) {
   // Extracting the necessary information from the data
-  const labels = data.slice(1).map((entry) => `${entry.month} ${entry.year}`);
+  const labels = data.map((entry) => `${entry.month} ${entry.year}`);
   const basketCostData = data.map((entry) => parseFloat(entry.total_basket_cost));
 
   // Calculating the percentage change and numerical change from the first recorded data
-  const firstBasketCost = basketCostData[0];
-  const percentageChangeData = basketCostData
-    .slice(1)
-    .map((cost, index) => ((cost - basketCostData[index]) / basketCostData[index]) * 100);
-  const numericalChangeData = basketCostData.slice(1).map((cost) => cost - firstBasketCost);
+  const percentageChangeData = basketCostData.map((entry, index) => {
+    // do not return anything if the index is 0
+    if (index === 0) {
+      return 0;
+    } else {
+      return ((entry - basketCostData[index - 1]) / basketCostData[index - 1]) * 100;
+    }
+  });
 
   const chartData = {
     labels: labels,
     datasets: [
       {
-        type: 'bar',
-        label: ' Numerical Change (vs. April 2022)',
-        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-        data: numericalChangeData,
-        borderColor: 'rgba(54, 162, 235, 1)',
-        borderWidth: 2,
-        yAxisID: 'y',
-      },
-      {
         type: 'line',
         label: ' Percentage Change (vs. Previous Month)',
-        borderColor: 'rgba(153, 102, 255, 1)',
+        borderColor: 'rgba(54, 162, 235, 1)',
         borderWidth: 2,
         fill: false,
         tension: 0.4,
         data: percentageChangeData,
-        yAxisID: 'y1',
+        yAxisID: 'y',
       },
     ],
   };
@@ -46,6 +40,8 @@ export default function InflationChart({ data }) {
     aspectRatio: 0.6,
     plugins: {
       tooltip: {
+        intersect: false,
+        mode: 'index',
         callbacks: {
           // Format the tooltip to show the percentage change and numerical change
           label: function (context) {
@@ -73,30 +69,15 @@ export default function InflationChart({ data }) {
         type: 'category',
         position: 'bottom',
         grid: {
-          offset: true,
-          color: 'rgba(255, 255, 255, 0.3)',
+          color: 'rgba(255, 255, 255, 0.1)',
         },
       },
       y: {
         type: 'linear',
         display: true,
-        position: 'left',
-        grid: {
-          color: 'rgba(255, 255, 255, 0.3)'
-        },
-        ticks: {
-          // Include a dollar sign in the ticks
-          callback: function (value, index, ticks) {
-            return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value);
-          }
-        }
-      },
-      y1: {
-        type: 'linear',
-        display: true,
         position: 'right',
         grid: {
-          drawOnChartArea: false, // only want the grid lines for one axis to show up
+          color: 'rgba(255, 255, 255, 0.1)',
         },
         ticks: {
           // Include a dollar sign in the ticks
@@ -115,7 +96,7 @@ export default function InflationChart({ data }) {
         data={chartData}
         options={chartOptions}
         chartTitle="Inflation Tracker"
-        chartSubtitle="The historical inflation of DC since 2022"
+        chartSubtitle="The historical inflation of DC since April 2022"
         chartDescription={`
           The inflation of the DC economy is calculated by the total stacks of the top 50 items sold during August 2022 & the average price per stack of the current month.
           The total price of all the items is added together to form the total basket cost of the current month.
