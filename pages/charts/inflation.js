@@ -26,7 +26,7 @@ export default function InflationChart({ data }) {
         borderColor: 'rgba(54, 162, 235, 1)',
         borderWidth: 2,
         fill: false,
-        tension: 0.4,
+        tension: 0.3,
         data: percentageChangeData,
         yAxisID: 'y',
       },
@@ -62,7 +62,11 @@ export default function InflationChart({ data }) {
             return label;
           }
         }
-      }
+      },
+    },
+    hover: {
+      mode: 'index',
+      intersect: false,
     },
     scales: {
       x: {
@@ -86,7 +90,7 @@ export default function InflationChart({ data }) {
           }
         }
       }
-    }
+    },
   };
 
   return (
