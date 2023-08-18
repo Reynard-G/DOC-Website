@@ -4,17 +4,12 @@ import ChartContainer from 'components/ChartContainer';
 
 export default function InflationChart({ data }) {
   // Extracting the necessary information from the data
-  const labels = data.map((entry) => `${entry.month} ${entry.year}`);
+  const labels = data.slice(1).map((entry) => `${entry.month} ${entry.year}`);
   const basketCostData = data.map((entry) => parseFloat(entry.total_basket_cost));
 
   // Calculating the percentage change and numerical change from the first recorded data
-  const percentageChangeData = basketCostData.map((entry, index) => {
-    // do not return anything if the index is 0
-    if (index === 0) {
-      return 0;
-    } else {
-      return ((entry - basketCostData[index - 1]) / basketCostData[index - 1]) * 100;
-    }
+  const percentageChangeData = basketCostData.slice(1).map((entry, index) => {
+    return ((entry - basketCostData[index]) / basketCostData[index]) * 100;
   });
 
   const chartData = {
