@@ -90,8 +90,8 @@ const NavBar = () => {
               <MenuItem onClick={() => (window.location.href = '/charts/popularItems')}>
                 <PieChartRoundedIcon fontSize='large' sx={{ mr: 1 }} />
                 <ListItemText
-                  primary="Item Demand"
-                  secondary="Top 10 most popular items sold in DC"
+                  primary="Popular Items"
+                  secondary="The top most popular items in DC"
                 />
               </MenuItem>
               <MenuItem>
@@ -147,8 +147,8 @@ const NavBar = () => {
               <MenuItem onClick={() => (window.location.href = '/charts/popularItems')}>
                 <PieChartRoundedIcon fontSize='large' sx={{ mr: 1 }} />
                 <ListItemText
-                  primary="Item Demand"
-                  secondary="Top 10 most popular items sold in DC"
+                  primary="Popular Items"
+                  secondary="The top most popular items in DC"
                 />
               </MenuItem>
               <MenuItem>
