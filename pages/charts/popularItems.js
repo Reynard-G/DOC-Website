@@ -1,5 +1,5 @@
 import pool from 'lib/db';
-import { useState, useEffect, use } from 'react';
+import { useState, useEffect } from 'react';
 import { Decimal } from 'decimal.js-light';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import Layout from 'components/Layout';
 import ChartContainer from 'components/ChartContainer';
 
-import { calculateMonthTotalQuantity, itemNameToMinecraftName, limitData } from '@/utils/utils';
+import { itemNameToMinecraftName, limitData } from '@/utils/utils';
 
 export default function PopularItemsChart({ sellQuantityData, buyQuantityData, colors }) {
   const [selectedTransactionType, setSelectedTransactionType] = useState('SELL');

@@ -1,15 +1,3 @@
-export const calculateMonthTotalQuantity = (monthlyData, month, transactionType) => {
-  if (transactionType === 'SELL') {
-  return monthlyData
-    .filter(({ month: m }) => m === month)
-    .reduce((sum, { total_sell_quantity }) => sum + parseInt(total_sell_quantity), 0);
-  } else if (transactionType === 'BUY') {
-    return monthlyData
-    .filter(({ month: m }) => m === month)
-    .reduce((sum, { total_buy_quantity }) => sum + parseInt(total_buy_quantity), 0);
-  }
-};
-
 export const itemNameToMinecraftName = (itemName) => {
   let item = itemName.split('#')[0];
   item = item.split(':')[0];
