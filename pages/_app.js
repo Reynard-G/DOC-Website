@@ -18,6 +18,15 @@ const darkTheme = createTheme({
       'sans-serif',
     ].join(','),
   },
+  components: {
+    MuiDrawer: {
+      styleOverrides: {
+        paper: {
+          backgroundColor: '#121212',
+        },
+      },
+    },
+  },
 });
 
 const MyApp = ({ Component, pageProps }) => {
