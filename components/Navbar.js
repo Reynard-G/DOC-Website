@@ -19,6 +19,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 
 import MenuIcon from '@mui/icons-material/Menu';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import SignalCellularAltRoundedIcon from '@mui/icons-material/SignalCellularAltRounded';
 import InsertChartRoundedIcon from '@mui/icons-material/InsertChartRounded';
 import PieChartRoundedIcon from '@mui/icons-material/PieChartRounded';
 import StackedLineChartRoundedIcon from '@mui/icons-material/StackedLineChartRounded';
@@ -125,57 +126,64 @@ const NavBar = () => {
         </Toolbar>
         {
           mobileDrawerOpen && (
-            <Drawer anchor="right" open={mobileDrawerOpen} onClose={toggleMobileDrawer}>
-              <div className="flex justify-start">
-                <IconButton onClick={toggleMobileDrawer}>
-                  <ChevronRightIcon />
-                </IconButton>
-              </div>
-              <Divider />
-              <List>
-                <ListItemButton onClick={handleMobileDrawerChartClick}>
-                  <ListItemIcon>
-                    <InsertChartRoundedIcon fontSize='medium' />
-                  </ListItemIcon>
-                  <ListItemText primary="Charts" />
-                  {mobileDrawerChartOpen ? <ExpandLess /> : <ExpandMore />}
-                </ListItemButton>
-                <Collapse in={mobileDrawerChartOpen} timeout="auto" unmountOnExit>
-                  <List component="div" disablePadding>
-                    <ListItemButton sx={{ pl: 4 }} onClick={() => (window.location.href = '/charts/inflation')}>
-                      <ListItemIcon>
-                        <InsertChartRoundedIcon fontSize='medium' />
-                      </ListItemIcon>
-                      <ListItemText primary="Inflation Tracker" />
-                    </ListItemButton>
-                    <ListItemButton sx={{ pl: 4 }} onClick={() => (window.location.href = '/charts/popularItems')}>
-                      <ListItemIcon>
-                        <PieChartRoundedIcon fontSize='medium' />
-                      </ListItemIcon>
-                      <ListItemText primary="Item Demand" />
-                    </ListItemButton>
-                    <ListItemButton sx={{ pl: 4 }}>
-                      <ListItemIcon>
-                        <StackedLineChartRoundedIcon fontSize='medium' />
-                      </ListItemIcon>
-                      <ListItemText primary="Chart 3" />
-                    </ListItemButton>
-                  </List>
-                </Collapse>
-                <ListItemButton onClick={() => (window.location.href = 'https://tracker.milklegend.xyz')}>
-                  <ListItemIcon>
-                    <AttachMoneyRoundedIcon fontSize='medium' />
-                  </ListItemIcon>
-                  <ListItemText primary="Item Price Tracker" />
-                </ListItemButton>
-                <ListItemButton onClick={() => (window.location.href = 'https://maps.milklegend.xyz')}>
-                  <ListItemIcon>
-                    <ExploreRoundedIcon fontSize='medium' />
-                  </ListItemIcon>
-                  <ListItemText primary="Maps" />
-                </ListItemButton>
-              </List>
-            </Drawer>
+            <>
+              <Drawer
+                anchor="right"
+                open={mobileDrawerOpen}
+                onClose={toggleMobileDrawer}
+                variant="temporary"
+              >
+                <div className="flex justify-start">
+                  <IconButton onClick={toggleMobileDrawer}>
+                    <ChevronRightIcon />
+                  </IconButton>
+                </div>
+                <Divider />
+                <List>
+                  <ListItemButton onClick={handleMobileDrawerChartClick}>
+                    <ListItemIcon>
+                      <SignalCellularAltRoundedIcon fontSize='medium' />
+                    </ListItemIcon>
+                    <ListItemText primary="Charts" />
+                    {mobileDrawerChartOpen ? <ExpandLess /> : <ExpandMore />}
+                  </ListItemButton>
+                  <Collapse in={mobileDrawerChartOpen} timeout="auto" unmountOnExit>
+                    <List component="div" disablePadding>
+                      <ListItemButton sx={{ pl: 4 }} onClick={() => (window.location.href = '/charts/inflation')}>
+                        <ListItemIcon>
+                          <InsertChartRoundedIcon fontSize='medium' />
+                        </ListItemIcon>
+                        <ListItemText primary="Inflation" />
+                      </ListItemButton>
+                      <ListItemButton sx={{ pl: 4 }} onClick={() => (window.location.href = '/charts/popularItems')}>
+                        <ListItemIcon>
+                          <PieChartRoundedIcon fontSize='medium' />
+                        </ListItemIcon>
+                        <ListItemText primary="Item Demand" />
+                      </ListItemButton>
+                      <ListItemButton sx={{ pl: 4 }}>
+                        <ListItemIcon>
+                          <StackedLineChartRoundedIcon fontSize='medium' />
+                        </ListItemIcon>
+                        <ListItemText primary="Chart 3" />
+                      </ListItemButton>
+                    </List>
+                  </Collapse>
+                  <ListItemButton onClick={() => (window.location.href = 'https://tracker.milklegend.xyz')}>
+                    <ListItemIcon>
+                      <AttachMoneyRoundedIcon fontSize='medium' />
+                    </ListItemIcon>
+                    <ListItemText primary="Item Price Tracker" />
+                  </ListItemButton>
+                  <ListItemButton onClick={() => (window.location.href = 'https://maps.milklegend.xyz')}>
+                    <ListItemIcon>
+                      <ExploreRoundedIcon fontSize='medium' />
+                    </ListItemIcon>
+                    <ListItemText primary="Maps" />
+                  </ListItemButton>
+                </List>
+              </Drawer>
+            </>
           )
         }
       </AppBar>

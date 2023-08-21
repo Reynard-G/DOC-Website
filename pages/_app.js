@@ -22,7 +22,7 @@ const darkTheme = createTheme({
     MuiDrawer: {
       styleOverrides: {
         paper: {
-          backgroundColor: '#121212',
+          background: '#161616',
         },
       },
     },

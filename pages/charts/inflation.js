@@ -89,12 +89,12 @@ export default function InflationChart({ data }) {
   };
 
   return (
-    <Layout title="Inflation Tracker">
+    <Layout title="DOC - Inflation">
       <ChartContainer
         type="line"
         data={chartData}
         options={chartOptions}
-        chartTitle="Inflation Tracker"
+        chartTitle="Inflation"
         chartSubtitle="The historical inflation of DC since April 2022"
         chartDescription={`
           The inflation of the DC economy is calculated by the total stacks of the top 50 items sold during August 2022 & the average price per stack of the current month.

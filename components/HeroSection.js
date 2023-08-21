@@ -60,7 +60,7 @@ const HeroSection = () => {
             </div>
             <div className="hero-box w-[10rem] h-[10rem] md:w-[12rem] md:h-[12rem] hidden md:flex my-4 items-center justify-center">
               <div className="hero-box-inner text-center">
-                <Image src="/dept_commerce.png" alt="doc main" width={96} height={96} />
+                <Image src="/dept_commerce.png" alt="doc main" width={96} height={96} priority={true} />
                 <div className="name">
                   <b className="font-bold">Department of Commerce</b>
                 </div>

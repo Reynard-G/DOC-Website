@@ -158,7 +158,7 @@ export default function PopularItemsChart({ sellQuantityData, buyQuantityData, c
   };
 
   return (
-    <Layout title="Popular Items">
+    <Layout title="DOC - Popular Items">
       <ChartContainer
         type="doughnut"
         data={chartData}
