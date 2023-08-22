@@ -25,7 +25,6 @@
     "framer-motion": "^10.12.16",
     "mariadb": "^3.2.0",
     "next": "^13.4.12",
-    "next-safe": "^3.4.1",
     "postcss": "8.4.24",
     "primereact": "^9.6.1",
     "react": "^18.2.0",
