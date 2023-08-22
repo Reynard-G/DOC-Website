@@ -15,6 +15,7 @@ export default class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <meta charSet="utf-8" />
+          
           <meta property="og:title" content="The Department of Commerce" />
           <meta property="og:description"
             content="The Department of Commerce fosters economic growth, innovation, and job
