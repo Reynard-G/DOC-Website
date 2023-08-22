@@ -20,7 +20,7 @@ export default class MyDocument extends Document {
           <meta property="og:description"
             content="The Department of Commerce fosters economic growth, innovation, and job
             creation through promoting trade, technology advancement, and data-driven policies." />
-          <meta property="og:image" content="/dept_commerce.png" />
+          <meta property="og:image" content="/dept_commerce.webp" />
           <meta property="og:url" content="https://doc.milklegend.xyz" />
           <meta property="og:type" content="website" />
           <meta property="og:site_name" content="The Department of Commerce" />
@@ -30,7 +30,7 @@ export default class MyDocument extends Document {
           <meta property="twitter:description"
             content="The Department of Commerce fosters economic growth, innovation, and job
             creation through promoting trade, technology advancement, and data-driven policies." />
-          <meta property="twitter:image" content="https://imgs.milklegend.xyz/dept_commerce.png" />
+          <meta property="twitter:image" content="https://doc.milklegend.xyz/dept_commerce.webp" />
           <meta property="twitter:image:alt" content="The Department of Commerce" />
           <meta name="description"
             content="The Department of Commerce fosters economic growth, innovation, and job

@@ -63,7 +63,7 @@ const NavBar = () => {
         <Toolbar>
           <Link href="/" className="flex items-center gap-2">
             <Image
-              src="/dept_commerce.png"
+              src="/dept_commerce.webp"
               alt="Department of Commerce Logo"
               width={40}
               height={40}
